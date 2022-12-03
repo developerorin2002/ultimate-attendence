@@ -7,23 +7,23 @@ import loginImg from '../../Assets/Images/signup.png'
 import './Login.css'
 const Login = () => {
 
-    const { register, handleSubmit, formState:{ errors }} = useForm();
+    const { register, handleSubmit, formState: { errors } } = useForm();
     const navigate = useNavigate();
     const handleLogin = (data) => {
-       console.log(data)
-       fetch(' https://test.nexisltd.com/login',{
-        method:"POST",
-        headers:{
-            'content-type':'application/json'
-        },
-        body:JSON.stringify(data)
-       })
-       .then(res=>res.json())
-       .then(data=>{
-        toast.success('Login Successfully')
-        localStorage.setItem('token',data.access_token)
-            navigate('/attendence')
-       })
+        console.log(data)
+        fetch(' https://test.nexisltd.com/login', {
+            method: "POST",
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+            .then(res => res.json())
+            .then(data => {
+                toast.success('Login Successfully')
+                localStorage.setItem('token', data.access_token)
+                navigate('/attendence')
+            })
     }
     return (
         <div>
@@ -41,9 +41,9 @@ const Login = () => {
                                     <TextField {...register("email")} label="Write Email Address" type="email" variant="standard" className='w-100 email-field my-3' />
                                 </div>
                                 <div className='px-4'>
-                                    <TextField {...register("password",{ required: true ,minLength:{value:8}}) } label="Write Password" type="password" variant="standard" className='w-100 email-field my-3' />
+                                    <TextField {...register("password", { required: true, minLength: { value: 8 } })} label="Write Password" type="password" variant="standard" className='w-100 email-field my-3' />
                                     {errors.password && <span className='text-danger'>Password must be at-least 8 characters. </span>}
-                                    
+
                                 </div>
                                 <div className='text-center'>
                                     <button type='submit' className='login-btn my-5'>Login</button>

@@ -24,9 +24,9 @@ const Header = () => {
                                         <Link to="/login" className="nav-link-cs">Login</Link>
                                         <Link to="/signup" className="nav-link-cs">SignUp</Link>
                                         <Link to="/attendence" className="nav-link-cs">Attendence</Link>
-                                        
+
                                     </Nav>
-                                    
+
                                 </Navbar.Collapse>
                             </Container>
                         </Navbar>

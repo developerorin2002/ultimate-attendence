@@ -20,9 +20,12 @@ const Attendence = () => {
     return (
         <div>
             <div className='d-flex justify-content-center text-center'>
-                <h3 className='attendence-text text-white py-2 my-3'>Attendence Information</h3>
+                {
+                    userData.length > 0 ? <h3 className='attendence-text text-white py-2 my-3'>Attendence Information</h3> : <h3 className='attendence-text text-white py-2 my-3'>Please wait Or Login</h3> 
+                }
             </div>
-            <Table striped bordered hover size="sm">
+            {
+                userData.length > 0 &&<Table striped bordered hover size="sm">
                 <thead>
                     <tr >
                         <th className='py-2 text-center'>Serial Number</th>
@@ -33,8 +36,8 @@ const Attendence = () => {
                 </thead>
                 <tbody>
                     {
-                        userData.map((user,i)=><tr key={user.id}>
-                            <td className='py-2 text-center'>{i+1}</td>
+                        userData.map((user, i) => <tr key={user.id}>
+                            <td className='py-2 text-center'>{i + 1}</td>
                             <td className='py-2 text-center'>{user.name}</td>
                             <td className='py-2 text-center'>{user.position}</td>
                             <td className='py-2 text-center'>{user.branch}</td>
@@ -42,6 +45,7 @@ const Attendence = () => {
                     }
                 </tbody>
             </Table>
+            }
         </div>
     );
 };

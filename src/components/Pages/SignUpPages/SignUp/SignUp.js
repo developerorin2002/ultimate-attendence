@@ -8,19 +8,19 @@ import signupImg from '../../../Assets/Images/signup.png'
 import './SignUp.css'
 const SignUp = () => {
     const [next, setNext] = useState(0);
-    const { register, handleSubmit,formState:{ errors } } = useForm();
+    const { register, handleSubmit, formState: { errors } } = useForm();
     const onSubmitSignUp = (data) => {
-        fetch('https://test.nexisltd.com/signup',{
-            method:'POST',
-            headers:{
-                'content-type':'application/json'
+        fetch('https://test.nexisltd.com/signup', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
             },
-            body:JSON.stringify(data)
+            body: JSON.stringify(data)
         })
-        .then(res=>res.json())
-        .then(data=>{
-            toast.success('SignUp Successfully')
-        })
+            .then(res => res.json())
+            .then(data => {
+                toast.success('SignUp Successfully')
+            })
     };
     return (
         <div>
@@ -60,14 +60,14 @@ const SignUp = () => {
                                     next === 2 &&
                                     <>
                                         <div className='px-4'>
-                                            <TextField {...register("password",{ required: true ,minLength:{value:8}})} label="Write Your Password" type="password" variant="standard" className='w-100 email-field my-3' />
+                                            <TextField {...register("password", { required: true, minLength: { value: 8 } })} label="Write Your Password" type="password" variant="standard" className='w-100 email-field my-3' />
                                             {errors.password && <span className='text-danger'>password must be 8 charater length</span>}
                                         </div>
                                     </>
                                 }
                                 <div className='text-center'>
                                     {
-                                        next === 2 && 
+                                        next === 2 &&
                                         <>
                                             <div className='text-center d-flex px-5 align-items-center justify-content-between'>
                                                 <div>
@@ -77,7 +77,7 @@ const SignUp = () => {
                                                 </div>
                                                 <div>
                                                     {
-                                                    <button type='submit' className='login-btn my-5'>SignUp</button>
+                                                        <button type='submit' className='login-btn my-5'>SignUp</button>
                                                     }
                                                 </div>
                                             </div>
@@ -86,21 +86,21 @@ const SignUp = () => {
                                 </div>
                             </form>
                             {
-                                next === 2 ? <></>:
-                                <>
-                                    <div className='text-center d-flex px-5 align-items-center justify-content-between'>
-                                        <div>
-                                            {
-                                                next > 0 && <button className='back-btn' onClick={() => setNext(next - 1)}>Back</button>
-                                            }
+                                next === 2 ? <></> :
+                                    <>
+                                        <div className='text-center d-flex px-5 align-items-center justify-content-between'>
+                                            <div>
+                                                {
+                                                    next > 0 && <button className='back-btn' onClick={() => setNext(next - 1)}>Back</button>
+                                                }
+                                            </div>
+                                            <div>
+                                                {
+                                                    next >= 0 && next <= 2 && <button className='next-btn my-5' onClick={() => setNext(next + 1)}>Next Step <FaArrowRight /></button>
+                                                }
+                                            </div>
                                         </div>
-                                        <div>
-                                            {
-                                                next >= 0 && next<=2 && <button className='next-btn my-5' onClick={() => setNext(next + 1)}>Next Step <FaArrowRight /></button>
-                                            }
-                                        </div>
-                                    </div>
-                                </>
+                                    </>
                             }
                             <div className='d-flex justify-content-center align-items-center py-4 my-4'>
                                 <div>

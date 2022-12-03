@@ -6,27 +6,27 @@ import SignUp from "../Pages/SignUpPages/SignUp/SignUp";
 
 const routes = createBrowserRouter([
     {
-        path:'/',
-        element:<MainLayout></MainLayout>,
-        children:[
+        path: '/',
+        element: <MainLayout></MainLayout>,
+        children: [
             {
-                path:'/',
-                element:<Login></Login>
+                path: '/',
+                element: <Login></Login>
             },
             {
-                path:'/login',
-                element:<Login></Login>
+                path: '/login',
+                element: <Login></Login>
             },
             {
-                path:'/signup',
-                element:<SignUp></SignUp>
+                path: '/signup',
+                element: <SignUp></SignUp>
             },
             {
-                path:'/attendence',
-                element:<Attendence></Attendence>
+                path: '/attendence',
+                element: <Attendence></Attendence>
             }
         ]
-        
+
     }
 ])
 export default routes;
