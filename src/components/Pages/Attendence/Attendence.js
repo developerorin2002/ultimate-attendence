@@ -21,7 +21,7 @@ const Attendence = () => {
         <div>
             <div className='d-flex justify-content-center text-center'>
                 {
-                    userData.length > 0 ? <h3 className='attendence-text text-white py-2 my-3'>Attendence Information</h3> : <h3 className='attendence-text text-white py-2 my-3'>Please wait Or Login</h3> 
+                    userData.length > 0 ? <h3 className='attendence-text text-white py-2 my-3'>Attendence Information</h3> : <h3 className='attendence-text text-white py-2 my-3'>Please Login</h3> 
                 }
             </div>
             {
