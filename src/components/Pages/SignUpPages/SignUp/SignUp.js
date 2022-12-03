@@ -1,24 +1,35 @@
 import { TextField } from '@mui/material';
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import toast from 'react-hot-toast';
 import { FaArrowRight } from "react-icons/fa";
 import { Link } from 'react-router-dom';
 import signupImg from '../../../Assets/Images/signup.png'
 import './SignUp.css'
 const SignUp = () => {
     const [next, setNext] = useState(0);
-    const { register, handleSubmit } = useForm();
+    const { register, handleSubmit,formState:{ errors } } = useForm();
     const onSubmitSignUp = (data) => {
-        console.log(data);
+        fetch('https://test.nexisltd.com/signup',{
+            method:'POST',
+            headers:{
+                'content-type':'application/json'
+            },
+            body:JSON.stringify(data)
+        })
+        .then(res=>res.json())
+        .then(data=>{
+            toast.success('SignUp Successfully')
+        })
     };
     return (
         <div>
             <div className="container">
-                <div className="row">
+                <div className="row justify-content-between">
                     <div className="col-lg-6">
                         <img src={signupImg} className="w-100 img-fluid" alt="" />
                     </div>
-                    <div className="col-lg-6">
+                    <div className="col-lg-4">
                         <div className='login-form'>
                             <h4 className='text-center py-5'>Sign Up </h4>
                             <form onSubmit={handleSubmit(onSubmitSignUp)}>
@@ -27,10 +38,10 @@ const SignUp = () => {
                                     next === 0 &&
                                     <>
                                         <div className='px-4'>
-                                            <TextField {...register("firstname")} label="Write First Name" type="text" variant="standard" className='w-100 email-field my-3' />
+                                            <TextField {...register("first_name")} label="Write First Name" type="text" variant="standard" className='w-100 email-field my-3' />
                                         </div>
                                         <div className='px-4'>
-                                            <TextField {...register("lastname")} label="Write Last Name" type="text" variant="standard" className='w-100 email-field my-3' />
+                                            <TextField {...register("last_Name")} label="Write Last Name" type="text" variant="standard" className='w-100 email-field my-3' />
                                         </div>
                                     </>
                                 }
@@ -38,7 +49,7 @@ const SignUp = () => {
                                     next === 1 &&
                                     <>
                                         <div className='px-4'>
-                                            <TextField {...register("number")} label="Write Your Number" type="number" variant="standard" className='w-100 email-field my-3' />
+                                            <TextField {...register("phone_number")} label="Write Your Number" type="number" variant="standard" className='w-100 email-field my-3' />
                                         </div>
                                         <div className='px-4'>
                                             <TextField {...register("email")} label="Write Your Email" type="email" variant="standard" className='w-100 email-field my-3' />
@@ -49,7 +60,8 @@ const SignUp = () => {
                                     next === 2 &&
                                     <>
                                         <div className='px-4'>
-                                            <TextField {...register("password")} label="Write Your Password" type="password" variant="standard" className='w-100 email-field my-3' />
+                                            <TextField {...register("password",{ required: true ,minLength:{value:8}})} label="Write Your Password" type="password" variant="standard" className='w-100 email-field my-3' />
+                                            {errors.password && <span className='text-danger'>password must be 8 charater length</span>}
                                         </div>
                                     </>
                                 }
